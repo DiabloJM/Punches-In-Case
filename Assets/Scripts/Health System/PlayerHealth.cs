@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlayerHealth : MonoBehaviour, IHealth
 {
-    public float health;
+    public int health;
 
     void Update()
     {
@@ -16,12 +16,12 @@ public class PlayerHealth : MonoBehaviour, IHealth
     public void Heal(float value)
     {
         value = Mathf.Abs(value);
-        health = Mathf.Clamp(health + value, 0, 100);
+        health = (int)Mathf.Clamp(health + value, 0, 100);
     }
 
     public void Damage(float value)
     {
         value = Mathf.Abs(value);
-        health = Mathf.Clamp(health - value, 0, 100);
+        health = (int)Mathf.Clamp(health - value, 0, 100);
     }
 }
