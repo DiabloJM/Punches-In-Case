@@ -3,9 +3,9 @@ using UnityEngine;
 //Clase que implementan las interfaces para tener manejo de la experiencia y nivel 
 public class ExperienceAndLevel : MonoBehaviour, IExperience, ILevel
 {
-    [SerializeField] private int m_Experience = 0; //Cantidad de experiencia
+    [SerializeField] public int m_Experience = 0; //Cantidad de experiencia
     [SerializeField] private int m_Level = 0; //Nivel actual del jugador
-    [SerializeField] private int m_ExperiencePerLevel; //Experiencia que necesita el jugador para subir de nivel
+    [SerializeField] public int m_ExperiencePerLevel; //Experiencia que necesita el jugador para subir de nivel
     [SerializeField] private int m_MultiplierPerLevel; //Multiplicador por nivel
 
     public int Experience => m_Experience;
