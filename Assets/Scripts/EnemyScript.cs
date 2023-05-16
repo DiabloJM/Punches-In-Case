@@ -7,6 +7,7 @@ public class EnemyScript : MonoBehaviour
 {
     //Declarations
     private Animator animator;
+    private PlayerHealth playerHealth;
     private CombatScript playerCombat;
     private EnemyManager enemyManager;
     private EnemyDetection enemyDetection;
@@ -14,8 +15,11 @@ public class EnemyScript : MonoBehaviour
 
     [Header("Stats")]
     public int health = 3;
+    public float damage = 10.0f;
+    public int experience = 50;
     private float moveSpeed = 1;
     private Vector3 moveDirection;
+    private ExperienceAndLevel playerExperience;
 
     [Header("States")]
     [SerializeField] private bool isPreparingAttack;
@@ -37,6 +41,12 @@ public class EnemyScript : MonoBehaviour
     public UnityEvent<EnemyScript> OnDamage;
     public UnityEvent<EnemyScript> OnStopMoving;
     public UnityEvent<EnemyScript> OnRetreat;
+
+    private void Awake()
+    {
+        playerHealth = FindObjectOfType<PlayerHealth>();
+        playerExperience = FindObjectOfType<ExperienceAndLevel>();
+    }
 
     void Start()
     {
@@ -149,6 +159,7 @@ public class EnemyScript : MonoBehaviour
         characterController.enabled = false;
         animator.SetTrigger("Death");
         enemyManager.SetEnemyAvailiability(this, false);
+        playerExperience.AddExperience(experience);
     }
 
     public void SetRetreat()
@@ -267,7 +278,10 @@ public class EnemyScript : MonoBehaviour
     public void HitEvent()
     {
         if(!playerCombat.isCountering && !playerCombat.isAttackingEnemy)
+        {
             playerCombat.DamageEvent();
+            playerHealth.Damage(damage);
+        }
 
         PrepareAttack(false);
     }
