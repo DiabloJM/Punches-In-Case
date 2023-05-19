@@ -30,7 +30,7 @@ public class ExperienceAndLevel : MonoBehaviour, IExperience, ILevel
         //Almacenar la experiencia temporalmente para realizar operaciones sobre ella
         int remainingExperience = experience;
 
-        do
+        /*do
         {
             //Calcula la cantidad maxima de experiencia necesaria para cambiar de nivel
             int experienceToUpgrade = m_ExperiencePerLevel * m_MultiplierPerLevel;
@@ -51,7 +51,7 @@ public class ExperienceAndLevel : MonoBehaviour, IExperience, ILevel
                 m_Experience = remainingExperience;
                 remainingExperience = 0;
             }
-        } while (remainingExperience > 0);
+        } while (remainingExperience > 0);*/
     }
 
     //Funcion para sumar un nivel al jugador
