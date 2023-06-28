@@ -20,6 +20,7 @@ public class EnemyScript : MonoBehaviour
     private float moveSpeed = 1;
     private Vector3 moveDirection;
     private ExperienceAndLevel playerExperience;
+    private LevelManager levelManager;
 
     [Header("States")]
     [SerializeField] private bool isPreparingAttack;
@@ -46,6 +47,7 @@ public class EnemyScript : MonoBehaviour
     {
         playerHealth = FindObjectOfType<PlayerHealth>();
         playerExperience = FindObjectOfType<ExperienceAndLevel>();
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     void Start()
@@ -115,6 +117,7 @@ public class EnemyScript : MonoBehaviour
             if (health <= 0)
             {
                 Death();
+                levelManager.enemiesCounter++;
                 return;
             }
 
