@@ -6,7 +6,7 @@ using Cinemachine;
 
 public class CombatScript : MonoBehaviour
 {
-    private EnemyManager enemyManager;
+    public EnemyManager enemyManager;
     private EnemyDetection enemyDetection;
     private MovementInput movementInput;
     private Animator animator;
@@ -45,7 +45,7 @@ public class CombatScript : MonoBehaviour
 
     void Start()
     {
-        enemyManager = FindObjectOfType<EnemyManager>();
+       // enemyManager = FindObjectOfType<EnemyManager>();
         animator = GetComponent<Animator>();
         enemyDetection = GetComponentInChildren<EnemyDetection>();
         movementInput = GetComponent<MovementInput>();
