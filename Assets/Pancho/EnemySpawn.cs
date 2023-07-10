@@ -24,6 +24,7 @@ public class EnemySpawn : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Player.ChangePLayers();
             Spawn.SetActive(true);
             gameObject.SetActive(false);
         }
