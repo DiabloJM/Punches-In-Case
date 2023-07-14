@@ -1,0 +1,236 @@
+fileFormatVersion: 2
+guid: 1804cdec68e7e764884e8c4b014b75aa
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chrome
+    second: {fileID: 2100000, guid: 9b84449b100c71a40a26e96c8c567b00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chrome_2
+    second: {fileID: 2100000, guid: 143794610a4f13848a9affb069af2a10, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: VRayMtl1
+    second: {fileID: 2100000, guid: 37e298025907615408973a82adca5334, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: chromedvorn
+    second: {fileID: 2100000, guid: c242a4b40b423d748b19d5df7c914d60, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forMayaAO_Alpha
+    second: {fileID: 2100000, guid: ceb742d745f80df489b06aef9baec774, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forMayaAO_Grill2
+    second: {fileID: 2100000, guid: fb6bb619b7f589c45a775d5accd8667b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forMayaAO_blinn10
+    second: {fileID: 2100000, guid: 4e86dcd20f01e4b4bbbf97a3a77dae64, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forMayaAO_blinn11
+    second: {fileID: 2100000, guid: c7fbdb662b62d254a937f9cab63b1400, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forMayaAO_blinn6
+    second: {fileID: 2100000, guid: 4cb5e42d3c7d180489928771ba313cc7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forMayaAO_blinn7
+    second: {fileID: 2100000, guid: 41e898dea9d98a24dbd86c5024421538, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forMayaAO_blinn9
+    second: {fileID: 2100000, guid: 180f525d4a98e044482bb268857356ce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forMayaAO_frontLights
+    second: {fileID: 2100000, guid: 9b7312f8e18ece540b1e256af1c034eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forMayaAO_lambert13
+    second: {fileID: 2100000, guid: 18c671c4e4eb2024a9138b500811d325, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forMayaAO_lambert15
+    second: {fileID: 2100000, guid: 06bffcf3fe2ee7e4a94bcd39feee532e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forMayaAO_lambert16
+    second: {fileID: 2100000, guid: 42ed6238ab395d84dbe4db8d0f3b1804, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forMayaAO_lambert17
+    second: {fileID: 2100000, guid: e32c47f73d9be98469711b13b4a69b13, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forMayaAO_mi_car_paint_phen2
+    second: {fileID: 2100000, guid: c4df5d43777c4bf4483af60250b11896, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forMayaAO_number
+    second: {fileID: 2100000, guid: fc187292e9fd29b469e281fce3fc1e3c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forMayaAO_phong2
+    second: {fileID: 2100000, guid: 4729d9f8799f2af4d92f79b80cfa3038, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forMayaAO_phong5
+    second: {fileID: 2100000, guid: fb04b249b292f274aa7d31ef7b958ba9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forMayaAO_rear_lights
+    second: {fileID: 2100000, guid: 05b860a8249c1ac42984e3789224ee09, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lamp1
+    second: {fileID: 2100000, guid: 738f78f47afde71428d9f4c2de410f21, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: logo222
+    second: {fileID: 2100000, guid: e9fe46abe53c667418225e689273be22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mafina2hdri_lambert9
+    second: {fileID: 2100000, guid: eda495126e7e7f948bbf81dcd7de11a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: miror
+    second: {fileID: 2100000, guid: d6b3721482fdf0f48a790e5152c33d67, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rezinDvorn
+    second: {fileID: 2100000, guid: 51216f1ad05563440aa2114a38bf9532, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
