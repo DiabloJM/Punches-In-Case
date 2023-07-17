@@ -26,25 +26,26 @@ public class PlayerChange : MonoBehaviour
 
     public void ChangePLayers()
     {
+        Debug.Log("Change");
         PlayerMove.SetActive(Activate);
-        Activate = !Activate;
+        Activate = !Activate; // true
         PlayerCombat.SetActive(Activate);
-        Activate = !Activate;
+        
         if (Activate)
-        {
-            Target = PlayerMove.transform;
-        }
-        else
         {
             Target = PlayerCombat.transform;
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "EnemySpawn")
+        else
         {
-            ChangePLayers();
+            Target = PlayerMove.transform;
         }
     }
+
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.tag == "EnemySpawn")
+    //     {
+    //         ChangePLayers();
+    //     }
+    // }
 }
