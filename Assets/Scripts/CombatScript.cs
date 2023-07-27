@@ -8,8 +8,17 @@ using Random = UnityEngine.Random;
 
 public class CombatScript : MonoBehaviour
 {
+    [Header("Sounds")]
+    public AudioSource bigPunchSound;
+    public AudioSource punchSound;
+    public AudioSource ouchSound;
+    public MusicController musicController;
+    
+    [Header("Hordes")]
+    [Tooltip("Arreglo con todos los game managers que tienen los padres de cada oleada de enemigos")]
     public EnemyManager[] enemyManagers;
-    public EnemyManager enemyManager;
+    public  EnemyManager enemyManager;
+    
     private EnemyDetection enemyDetection;
     private MovementInput movementInput;
     private Animator animator;
@@ -168,9 +177,14 @@ public class CombatScript : MonoBehaviour
             Time.timeScale = .2f;
             lastHitCamera.SetActive(true);
             lastHitFocusObject.position = lockedTarget.transform.position;
-            yield return new WaitForSecondsRealtime(2);
+            yield return new WaitForSecondsRealtime(1.2f);
+            bigPunchSound.Play();
+            yield return new WaitForSecondsRealtime(0.8f);
             lastHitCamera.SetActive(false);
             Time.timeScale = 1f;
+            yield return new WaitForSecondsRealtime(2);
+            musicController.ChangeMusicState();
+            
         }
     }
 
@@ -235,16 +249,20 @@ public class CombatScript : MonoBehaviour
         {
             return;
         }
-
+        
+        if(lockedTarget.health > 1)
+            punchSound.Play();
         OnHit.Invoke(lockedTarget);
 
-        //Polish
+
+            //Polish
         punchParticle.PlayParticleAtPosition(punchPosition.position);
     }
 
     public void DamageEvent()
     {
         animator.SetTrigger("Hit");
+        ouchSound.Play();
 
         if (damageCoroutine != null)
             StopCoroutine(damageCoroutine);

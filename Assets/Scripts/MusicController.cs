@@ -1,27 +1,37 @@
+using System;
 using UnityEngine;
 
 public class MusicController : MonoBehaviour
 {
-    private AudioSource audioSource;
-    private bool isPaused = false;
+    public AudioSource audioSource1;
+    public AudioSource audioSource2;
+
+    private bool isAudio1Playing = true;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        // Iniciar la reproducción del primer AudioSource
+        audioSource1.Play();
+        audioSource2.Play();
+        audioSource2.Pause();
     }
+
+
 
     public void ChangeMusicState()
     {
-        if (isPaused)
+        if (isAudio1Playing)
         {
-            audioSource.UnPause();
+            audioSource1.Pause();
+            audioSource2.UnPause();
         }
         else
         {
-            audioSource.Pause();
+            audioSource1.UnPause();
+            audioSource2.Pause();
         }
 
-        isPaused = !isPaused;
+        isAudio1Playing = !isAudio1Playing;
     }
     
     
