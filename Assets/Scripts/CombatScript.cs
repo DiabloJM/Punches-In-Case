@@ -1,16 +1,31 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
 using Cinemachine;
+using Random = UnityEngine.Random;
 
 public class CombatScript : MonoBehaviour
 {
-    public EnemyManager enemyManager;
+    [Header("Sounds")]
+    public AudioSource bigPunchSound;
+    public AudioSource airpunchSound;
+    public AudioSource punchSound;
+    public AudioSource punch2Sound;
+    public AudioSource ouchSound;
+    public MusicController musicController;
+    
+    [Header("Hordes")]
+    [Tooltip("Arreglo con todos los game managers que tienen los padres de cada oleada de enemigos")]
+    public EnemyManager[] enemyManagers;
+    public  EnemyManager enemyManager;
+    
     private EnemyDetection enemyDetection;
     private MovementInput movementInput;
     private Animator animator;
     private CinemachineImpulseSource impulseSource;
+    private int counter = 0;
 
     [Header("Target")]
     private EnemyScript lockedTarget;
@@ -42,7 +57,9 @@ public class CombatScript : MonoBehaviour
 
     int animationCount = 0;
     string[] attacks;
+    private bool hasHit = false;
 
+ 
     void Start()
     {
        // enemyManager = FindObjectOfType<EnemyManager>();
@@ -50,6 +67,15 @@ public class CombatScript : MonoBehaviour
         enemyDetection = GetComponentInChildren<EnemyDetection>();
         movementInput = GetComponent<MovementInput>();
         impulseSource = GetComponentInChildren<CinemachineImpulseSource>();
+        enemyManager = enemyManagers[counter];
+    }
+
+    public void ChangeEnemyManagerCounter()
+    {
+        if(counter + 1 < enemyManagers.Length) 
+            counter++;
+        
+        enemyManager = enemyManagers[counter];
     }
 
     //This function gets called whenever the player inputs the punch action
@@ -118,15 +144,21 @@ public class CombatScript : MonoBehaviour
         animator.SetTrigger(attackTrigger);
 
         if (attackCoroutine != null)
+        {
             StopCoroutine(attackCoroutine);
-        attackCoroutine = StartCoroutine(AttackCoroutine(isLastHit() ? 1.5f : cooldown));
-
+        }
+        attackCoroutine = StartCoroutine(AttackCoroutine(isLastHit() ? 1f : cooldown));
+        
         //Check if last enemy
         if (isLastHit())
+        {
             StartCoroutine(FinalBlowCoroutine());
+        }
 
         if (target == null)
+        {
             return;
+        }
 
         target.StopMoving();
         MoveTorwardsTarget(target, movementDuration);
@@ -137,20 +169,28 @@ public class CombatScript : MonoBehaviour
             isAttackingEnemy = true;
             movementInput.enabled = false;
             yield return new WaitForSeconds(duration);
+            if (!hasHit) 
+                airpunchSound.Play();
             isAttackingEnemy = false;
             yield return new WaitForSeconds(.2f);
             movementInput.enabled = true;
+            hasHit = false;
             LerpCharacterAcceleration();
         }
 
         IEnumerator FinalBlowCoroutine()
         {
-            Time.timeScale = .5f;
+            Time.timeScale = .2f;
             lastHitCamera.SetActive(true);
             lastHitFocusObject.position = lockedTarget.transform.position;
-            yield return new WaitForSecondsRealtime(2);
+            yield return new WaitForSecondsRealtime(1.2f);
+            bigPunchSound.Play();
+            yield return new WaitForSecondsRealtime(0.8f);
             lastHitCamera.SetActive(false);
             Time.timeScale = 1f;
+            yield return new WaitForSecondsRealtime(2);
+            musicController.ChangeMusicState();
+            
         }
     }
 
@@ -163,6 +203,7 @@ public class CombatScript : MonoBehaviour
 
     void CounterCheck()
     {
+        Debug.Log("CounterCheck");
         //Initial check
         if (isCountering || isAttackingEnemy || !enemyManager.AnEnemyIsPreparingAttack())
             return;
@@ -211,17 +252,49 @@ public class CombatScript : MonoBehaviour
     public void HitEvent()
     {
         if (lockedTarget == null || enemyManager.AliveEnemyCount() == 0)
+        {
             return;
+        }
+        hasHit = true;
 
+        if (enemyManager.AliveEnemyCount() == 1)
+        {
+            if (lockedTarget.health > 1)
+            {
+            
+                if (Random.Range(0,2) == 0)
+                {
+                    punchSound.Play();
+                }
+                else
+                {
+                    punch2Sound.Play();
+                }
+            }
+        }
+        else
+        {
+            if (Random.Range(0,2) == 0)
+            {
+                punchSound.Play();
+            }
+            else
+            {
+                punch2Sound.Play();
+            } 
+        }
+        
         OnHit.Invoke(lockedTarget);
 
-        //Polish
+
+            //Polish
         punchParticle.PlayParticleAtPosition(punchPosition.position);
     }
 
     public void DamageEvent()
     {
         animator.SetTrigger("Hit");
+        ouchSound.Play();
 
         if (damageCoroutine != null)
             StopCoroutine(damageCoroutine);

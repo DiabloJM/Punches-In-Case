@@ -2,30 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public GameObject Spawn;
+    [FormerlySerializedAs("Spawn")] public GameObject spawn;
 
-    public PlayerChange Player;
+    public MusicController musicController;
+
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            Player.ChangePLayers();
-            Spawn.SetActive(true);
+            spawn.SetActive(true);
+            musicController.ChangeMusicState();
             gameObject.SetActive(false);
         }
     }
