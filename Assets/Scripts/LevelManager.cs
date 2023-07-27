@@ -10,21 +10,15 @@ public class LevelManager : MonoBehaviour
     [HideInInspector] public int enemiesCounter = 0;
     [SerializeField] private string levelToLoad;
     public CombatScript CombatScript;
-    public PlayerChange playerChange;
     // Update is called once per frame
     void Update()
     {
-        if (enemiesCounter >= 5)
+        if (enemiesCounter > CombatScript.enemyManager.AvailableEnemyCount())
         {
+            Debug.Log("Change Enemy Manager");
             CombatScript.ChangeEnemyManagerCounter();
-            Invoke("_ChangePlayer", 4.0f);
             enemiesCounter = 0;
         }
-    }
-
-    private void _ChangePlayer()
-    {
-        playerChange.ChangePLayers();
     }
 
     private void ChangeLevel()

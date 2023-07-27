@@ -135,7 +135,7 @@ public class CombatScript : MonoBehaviour
         {
             StopCoroutine(attackCoroutine);
         }
-        attackCoroutine = StartCoroutine(AttackCoroutine(isLastHit() ? 1.5f : cooldown));
+        attackCoroutine = StartCoroutine(AttackCoroutine(isLastHit() ? 1f : cooldown));
         
         //Check if last enemy
         if (isLastHit())
@@ -165,7 +165,7 @@ public class CombatScript : MonoBehaviour
 
         IEnumerator FinalBlowCoroutine()
         {
-            Time.timeScale = .5f;
+            Time.timeScale = .2f;
             lastHitCamera.SetActive(true);
             lastHitFocusObject.position = lockedTarget.transform.position;
             yield return new WaitForSecondsRealtime(2);
@@ -231,10 +231,8 @@ public class CombatScript : MonoBehaviour
 
     public void HitEvent()
     {
-        Debug.Log("HitEvent");
         if (lockedTarget == null || enemyManager.AliveEnemyCount() == 0)
         {
-            Debug.Log("lockedTarget == null || enemyManager.AliveEnemyCount() == 0");
             return;
         }
 

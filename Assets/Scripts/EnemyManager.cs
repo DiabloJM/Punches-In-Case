@@ -27,10 +27,7 @@ public class EnemyManager : MonoBehaviour
         StartAI();
     }
     
-    private void Update()
-    {
-        Debug.Log(AliveEnemyCount());
-    }
+
 
 
     public void StartAI()
