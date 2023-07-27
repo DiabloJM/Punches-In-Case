@@ -11,6 +11,7 @@ public class PlayerMovement2d : MonoBehaviour
     string CrescentKick2dParameter = "CrescentKick2d";
     string EnemyHit2dParameter = "EnemyHit";
     string Run2d = "Run";
+    string FlyingPunchCombo2d = "FlyingPunchCombo2d";
 
     private Vector3 movementDirection;
     private bool isRunning;
@@ -23,16 +24,20 @@ public class PlayerMovement2d : MonoBehaviour
     private void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+       
 
         // Mover al jugador en la dirección calculada
-        movementDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+        movementDirection = new Vector3(horizontalInput, 0f).normalized;
         transform.Translate(movementDirection * movementSpeed * Time.deltaTime);
 
         // Reproducir la animación al hacer clic izquierdo
         if (Input.GetMouseButton(0))
         {
             animator.SetBool(CrescentKick2dParameter, true);
+        }
+        if (Input.GetMouseButton(1))
+        {
+            animator.SetBool(FlyingPunchCombo2d, true);
         }
 
         // Controlar la animación de correr
@@ -46,10 +51,14 @@ public class PlayerMovement2d : MonoBehaviour
         if (horizontalInput < 0f)
         {
             SetPlayerScale(-1f);
+            animator.SetBool(CrescentKick2dParameter, false);
+            animator.SetBool(FlyingPunchCombo2d, false);
         }
         else if (horizontalInput > 0f)
         {
             SetPlayerScale(1f);
+            animator.SetBool(CrescentKick2dParameter, false);
+            animator.SetBool(FlyingPunchCombo2d, false);
         }
     }
 
