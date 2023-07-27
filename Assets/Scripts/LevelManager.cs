@@ -4,19 +4,30 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class LevelManager : MonoBehaviour
 {
     [HideInInspector] public int enemiesCounter = 0;
     [SerializeField] private string levelToLoad;
-    public CombatScript CombatScript;
+    [FormerlySerializedAs("CombatScript")] public CombatScript combatScript;
+
+    private int maxEnemyCount;
     // Update is called once per frame
+
+
+    public void SetMaxAvailableEnemyCount()
+    {
+        maxEnemyCount = combatScript.enemyManager.AvailableEnemyCount();
+        Debug.Log($"maxEnemyCount: {maxEnemyCount}");
+    }
+
     void Update()
     {
-        if (enemiesCounter > CombatScript.enemyManager.AvailableEnemyCount())
+        if (enemiesCounter > maxEnemyCount)
         {
             Debug.Log("Change Enemy Manager");
-            CombatScript.ChangeEnemyManagerCounter();
+            combatScript.ChangeEnemyManagerCounter();
             enemiesCounter = 0;
         }
     }

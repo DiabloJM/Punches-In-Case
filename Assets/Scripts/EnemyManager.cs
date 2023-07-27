@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    public LevelManager levelManager;
     private EnemyScript[] enemies;
     public EnemyStruct[] allEnemies;
     private List<int> enemyIndexes;
@@ -23,8 +24,9 @@ public class EnemyManager : MonoBehaviour
             allEnemies[i].enemyScript = enemies[i];
             allEnemies[i].enemyAvailability = true;
         }
-
+    
         StartAI();
+        levelManager.SetMaxAvailableEnemyCount();
     }
     
 

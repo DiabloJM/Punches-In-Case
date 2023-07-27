@@ -9,6 +9,7 @@ public class EnemySpawn : MonoBehaviour
     [FormerlySerializedAs("Spawn")] public GameObject spawn;
 
     public MusicController musicController;
+
     // Start is called before the first frame update
 
     private void OnTriggerEnter(Collider other)

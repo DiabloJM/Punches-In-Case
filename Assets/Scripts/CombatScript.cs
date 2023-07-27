@@ -10,7 +10,9 @@ public class CombatScript : MonoBehaviour
 {
     [Header("Sounds")]
     public AudioSource bigPunchSound;
+    public AudioSource airpunchSound;
     public AudioSource punchSound;
+    public AudioSource punch2Sound;
     public AudioSource ouchSound;
     public MusicController musicController;
     
@@ -55,6 +57,7 @@ public class CombatScript : MonoBehaviour
 
     int animationCount = 0;
     string[] attacks;
+    private bool hasHit = false;
 
  
     void Start()
@@ -166,9 +169,12 @@ public class CombatScript : MonoBehaviour
             isAttackingEnemy = true;
             movementInput.enabled = false;
             yield return new WaitForSeconds(duration);
+            if (!hasHit) 
+                airpunchSound.Play();
             isAttackingEnemy = false;
             yield return new WaitForSeconds(.2f);
             movementInput.enabled = true;
+            hasHit = false;
             LerpCharacterAcceleration();
         }
 
@@ -249,9 +255,35 @@ public class CombatScript : MonoBehaviour
         {
             return;
         }
+        hasHit = true;
+
+        if (enemyManager.AliveEnemyCount() == 1)
+        {
+            if (lockedTarget.health > 1)
+            {
+            
+                if (Random.Range(0,2) == 0)
+                {
+                    punchSound.Play();
+                }
+                else
+                {
+                    punch2Sound.Play();
+                }
+            }
+        }
+        else
+        {
+            if (Random.Range(0,2) == 0)
+            {
+                punchSound.Play();
+            }
+            else
+            {
+                punch2Sound.Play();
+            } 
+        }
         
-        if(lockedTarget.health > 1)
-            punchSound.Play();
         OnHit.Invoke(lockedTarget);
 
 
