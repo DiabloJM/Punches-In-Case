@@ -67,6 +67,8 @@ public class EnemyScript : MonoBehaviour
         MovementCoroutine = StartCoroutine(EnemyMovement());
 
     }
+    
+    
 
     IEnumerator EnemyMovement()
     {

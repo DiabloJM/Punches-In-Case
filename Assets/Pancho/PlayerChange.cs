@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class PlayerChange : MonoBehaviour
@@ -10,6 +11,8 @@ public class PlayerChange : MonoBehaviour
 
     public GameObject PlayerMove;
     public GameObject PlayerCombat;
+    public CinemachineFreeLook freeLookCamera;
+
     private bool Activate = false;
     // Start is called before the first frame update
     void Start()
@@ -39,6 +42,14 @@ public class PlayerChange : MonoBehaviour
         {
             Target = PlayerMove.transform;
         }
+        
+        // Change the CinemachineFreeLook targets
+        if (freeLookCamera)
+        {
+            freeLookCamera.Follow = Target;
+            freeLookCamera.LookAt = Target;
+        }
+        
     }
 
     // private void OnTriggerEnter(Collider other)

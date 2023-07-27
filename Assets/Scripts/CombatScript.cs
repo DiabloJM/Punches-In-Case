@@ -1,16 +1,20 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
 using Cinemachine;
+using Random = UnityEngine.Random;
 
 public class CombatScript : MonoBehaviour
 {
+    public EnemyManager[] enemyManagers;
     public EnemyManager enemyManager;
     private EnemyDetection enemyDetection;
     private MovementInput movementInput;
     private Animator animator;
     private CinemachineImpulseSource impulseSource;
+    private int counter = 0;
 
     [Header("Target")]
     private EnemyScript lockedTarget;
@@ -43,6 +47,7 @@ public class CombatScript : MonoBehaviour
     int animationCount = 0;
     string[] attacks;
 
+ 
     void Start()
     {
        // enemyManager = FindObjectOfType<EnemyManager>();
@@ -50,6 +55,15 @@ public class CombatScript : MonoBehaviour
         enemyDetection = GetComponentInChildren<EnemyDetection>();
         movementInput = GetComponent<MovementInput>();
         impulseSource = GetComponentInChildren<CinemachineImpulseSource>();
+        enemyManager = enemyManagers[counter];
+    }
+
+    public void ChangeEnemyManagerCounter()
+    {
+        if(counter + 1 < enemyManagers.Length) 
+            counter++;
+        
+        enemyManager = enemyManagers[counter];
     }
 
     //This function gets called whenever the player inputs the punch action
@@ -118,15 +132,21 @@ public class CombatScript : MonoBehaviour
         animator.SetTrigger(attackTrigger);
 
         if (attackCoroutine != null)
+        {
             StopCoroutine(attackCoroutine);
+        }
         attackCoroutine = StartCoroutine(AttackCoroutine(isLastHit() ? 1.5f : cooldown));
-
+        
         //Check if last enemy
         if (isLastHit())
+        {
             StartCoroutine(FinalBlowCoroutine());
+        }
 
         if (target == null)
+        {
             return;
+        }
 
         target.StopMoving();
         MoveTorwardsTarget(target, movementDuration);
@@ -163,6 +183,7 @@ public class CombatScript : MonoBehaviour
 
     void CounterCheck()
     {
+        Debug.Log("CounterCheck");
         //Initial check
         if (isCountering || isAttackingEnemy || !enemyManager.AnEnemyIsPreparingAttack())
             return;
@@ -210,8 +231,12 @@ public class CombatScript : MonoBehaviour
 
     public void HitEvent()
     {
+        Debug.Log("HitEvent");
         if (lockedTarget == null || enemyManager.AliveEnemyCount() == 0)
+        {
+            Debug.Log("lockedTarget == null || enemyManager.AliveEnemyCount() == 0");
             return;
+        }
 
         OnHit.Invoke(lockedTarget);
 
