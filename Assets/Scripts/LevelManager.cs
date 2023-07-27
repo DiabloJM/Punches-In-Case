@@ -8,11 +8,11 @@ using UnityEngine.Serialization;
 
 public class LevelManager : MonoBehaviour
 {
-    [HideInInspector] public int enemiesCounter = 0;
+    [FormerlySerializedAs("enemiesCounter")] [HideInInspector] public int enemiesDefeatedCounter = 0;
     [SerializeField] private string levelToLoad;
     [FormerlySerializedAs("CombatScript")] public CombatScript combatScript;
 
-    private int maxEnemyCount;
+    private int maxEnemyCount = 1000;
     // Update is called once per frame
 
 
@@ -24,11 +24,12 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        if (enemiesCounter > maxEnemyCount)
+        Debug.Log($"enemiesCounter: {enemiesDefeatedCounter}");
+        if (maxEnemyCount <= enemiesDefeatedCounter )
         {
             Debug.Log("Change Enemy Manager");
             combatScript.ChangeEnemyManagerCounter();
-            enemiesCounter = 0;
+            enemiesDefeatedCounter = 0;
         }
     }
 

@@ -119,7 +119,7 @@ public class EnemyScript : MonoBehaviour
             if (health <= 0)
             {
                 Death();
-                levelManager.enemiesCounter++;
+                levelManager.enemiesDefeatedCounter++;
                 return;
             }
 
