@@ -84,6 +84,16 @@ public class Enemy2D : MonoBehaviour
             anim.SetBool("Death", true);
             Destroy(gameObject, 3.0f);
         }
+        else
+        {
+            anim.SetBool("Hit", true);
+            Invoke("DeactivateAnimation", 1);
+        }
+    }
+
+    void DeactivateAnimation()
+    {
+        anim.SetBool("Hit", false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
