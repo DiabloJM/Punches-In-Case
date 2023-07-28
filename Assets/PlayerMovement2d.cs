@@ -9,11 +9,9 @@ public class PlayerMovement2d : MonoBehaviour
     private int health = 100;
 
     string CrescentKick2dParameter = "CrescentKick2d";
-    string EnemyHit2dParameter = "EnemyHit";
     string Run2d = "Run";
     string FlyingPunchCombo2d = "FlyingPunchCombo2d";
 
-    private Vector3 movementDirection;
     private bool isRunning;
     public Rigidbody2D rb;
 
@@ -25,11 +23,6 @@ public class PlayerMovement2d : MonoBehaviour
     private void Update()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
-       
-
-        // Mover al jugador en la dirección calculada
-        movementDirection = new Vector3(horizontalInput, 0f).normalized;
-       
 
         if (horizontalInput != 0)
         {
@@ -60,29 +53,6 @@ public class PlayerMovement2d : MonoBehaviour
         // Controlar la animación de correr
         isRunning = Mathf.Abs(rb.velocity.x) != 0;
         animator.SetBool(Run2d, isRunning);
-
-     
-
-
-        // Cambiar la escala según la dirección
-        if (horizontalInput < 0f)
-        {
-            SetPlayerScale(-1f);
-            animator.SetBool(CrescentKick2dParameter, false);
-            animator.SetBool(FlyingPunchCombo2d, false);
-        }
-        else if (horizontalInput > 0f)
-        {
-            SetPlayerScale(1f);
-            animator.SetBool(CrescentKick2dParameter, false);
-            animator.SetBool(FlyingPunchCombo2d, false);
-        }
-    }
-
-    // Función para cambiar el local scale del jugador
-    private void SetPlayerScale(float scaleX)
-    {
-        transform.localScale = new Vector3(scaleX, 1f, 1f);
     }
 
     public void MakeDamage(int damage)
