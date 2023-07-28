@@ -12,6 +12,7 @@ public class Enemy2D : MonoBehaviour
 
     bool goToPlayer;
     bool attack;
+    bool isDeath;
 
     GameObject playerRef;
 
@@ -25,12 +26,15 @@ public class Enemy2D : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = 60;
         rb = GetComponent<Rigidbody2D>();
         playerRef = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
     {
+        if (isDeath || playerRef == null)
+            return;
         UpdateStates();
         if(goToPlayer)
         {
@@ -38,12 +42,12 @@ public class Enemy2D : MonoBehaviour
             if (direction < 0)
             {
                 rb.velocity = new Vector2(Mathf.Clamp((rb.velocity.x - speed * Time.deltaTime), -5, 0), 0);
-                transform.localScale = new Vector2(1, 1);
+                transform.localScale = new Vector3(1, 1, 1);
             }
             else
             {          
                 rb.velocity = new Vector2(Mathf.Clamp((rb.velocity.x + speed * Time.deltaTime), 0, 5),0);
-                transform.localScale = new Vector2(-1, 1);
+                transform.localScale = new Vector3(-1, 1, 1);
             }
             anim.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
         }
@@ -79,9 +83,13 @@ public class Enemy2D : MonoBehaviour
     public void MakeDamage(int damage)
     {
         health -= damage;
-        if(health <= 0)
+        if (health <= 0)
         {
             anim.SetBool("Death", true);
+            rb.gravityScale = 0;
+            GetComponent<CapsuleCollider2D>().enabled = false;
+            isDeath = true;
+            rb.velocity = Vector3.zero;
             Destroy(gameObject, 3.0f);
         }
         else
