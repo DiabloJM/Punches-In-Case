@@ -119,7 +119,7 @@ public class EnemyScript : MonoBehaviour
             if (health <= 0)
             {
                 Death();
-                levelManager.enemiesDefeatedCounter++;
+                
                 return;
             }
 
@@ -165,6 +165,7 @@ public class EnemyScript : MonoBehaviour
         animator.SetTrigger("Death");
         enemyManager.SetEnemyAvailiability(this, false);
         playerExperience.AddExperience(experience);
+        levelManager.enemiesDefeatedCounter++;
     }
 
     public void SetRetreat()
