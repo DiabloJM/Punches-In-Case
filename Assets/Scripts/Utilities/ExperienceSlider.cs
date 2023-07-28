@@ -8,10 +8,15 @@ public class ExperienceSlider : MonoBehaviour
     public Slider slider;
     public GameObject FillArea;
     public ExperienceAndLevel player;
+    public Text text;
+    public EnemyScript enemy;
+    public int enemyHealth = 5;
+    int levelNumber = 1;
 
     private void Start()
     {
         slider.maxValue = player.m_ExperiencePerLevel;
+        text.text = levelNumber.ToString();
     }
     void Update()
     {
@@ -25,6 +30,16 @@ public class ExperienceSlider : MonoBehaviour
             FillArea.SetActive(true);
             slider.maxValue = player.m_ExperiencePerLevel;
             slider.value = player.m_Experience;
+            if (slider.value == 200)
+            {
+                player.m_Experience = 0;
+                levelNumber++;
+                text.text = levelNumber.ToString();
+                if(enemyHealth - 1 > 1)
+                {
+                    enemyHealth--;
+                }
+            }
         }
     }
 }

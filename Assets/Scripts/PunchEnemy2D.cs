@@ -13,7 +13,7 @@ public class PunchEnemy2D : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             PlayerMovement2d Player = collision.gameObject.GetComponent<PlayerMovement2d>();
-            Player.MakeDamage(25);
+            Player.MakeDamage(10);
             health.UpdateHealthSlider();
         }
     }

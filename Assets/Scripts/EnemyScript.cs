@@ -13,8 +13,11 @@ public class EnemyScript : MonoBehaviour
     private EnemyDetection enemyDetection;
     private CharacterController characterController;
 
+    private ExperienceSlider experienceSlider;
+
     [Header("Stats")]
-    public int health = 3;
+    public int health = 0;
+    private int maxHealth = 0;
     public float damage = 10.0f;
     public int experience = 50;
     private float moveSpeed = 1;
@@ -66,9 +69,13 @@ public class EnemyScript : MonoBehaviour
 
         MovementCoroutine = StartCoroutine(EnemyMovement());
 
+        experienceSlider = FindObjectOfType<ExperienceSlider>();
+        maxHealth = experienceSlider.enemyHealth;
+        health = maxHealth;
+        
     }
-    
-    
+
+
 
     IEnumerator EnemyMovement()
     {

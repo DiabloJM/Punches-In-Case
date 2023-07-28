@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    public string levelName = "MainMenu";
     //Funcion para ir al menu 
     public void Menu()
     {
@@ -51,12 +52,18 @@ public class MenuController : MonoBehaviour
         Application.Quit();
     }
 
+    public void ChangeLevel()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(levelName);
+    }
+
     //Funcion para regresar al jugador al menu tras completar un nivel
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            Menu();
+            ChangeLevel();
         }
     }
 }
