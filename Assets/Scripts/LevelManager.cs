@@ -13,8 +13,10 @@ public class LevelManager : MonoBehaviour
     [FormerlySerializedAs("CombatScript")] public CombatScript combatScript;
 
     private int maxEnemyCount = 1000;
-    // Update is called once per frame
 
+    //Variables para el menu de pausa
+    public GameObject pauseMenu;
+    [SerializeField] private GameObject pause;
 
     public void SetMaxAvailableEnemyCount()
     {
@@ -30,6 +32,14 @@ public class LevelManager : MonoBehaviour
             Debug.Log("Change Enemy Manager");
             combatScript.ChangeEnemyManagerCounter();
             enemiesDefeatedCounter = 0;
+        }
+
+        //If para comprobar si el jugador presiona el boton de pausa
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            pause.GetComponent<MenuController>().Pause();
+
+            pauseMenu.SetActive(true);
         }
     }
 
