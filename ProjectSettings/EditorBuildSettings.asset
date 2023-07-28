@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TheBridge.unity
     guid: 077aca57e620988418f0865080d02905
   - enabled: 1
-    path: Assets/Scenes/TheDocks.unity
-    guid: 17dab8eaf79499d41a46dd334e52ccfe
+    path: Assets/Scenes/TheDocksTest.unity
+    guid: 03a934c2827299a4d8a2ebf434a68211
   m_configObjects: {}
